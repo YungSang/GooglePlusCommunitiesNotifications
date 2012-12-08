@@ -83,18 +83,6 @@ function setInfiniteTab() {
 				return;
 			}
 
-/*
-			var $a = $('<a/>', {
-				href  : '#markallasread',
-				title : 'Mark all as read'
-			}).click(function() {
-				bg.GPCN.markAllAsRead(community_id, function(total) {
-					$('.unread').removeClass('unread');
-				});
-				return false;
-			}).append('Mark all as read').prependTo($('header', $article));
-*/
-
 			var $ul = $('<ul/>').appendTo($article);
 
 			notes.forEach(function(note) {

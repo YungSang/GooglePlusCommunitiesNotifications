@@ -227,37 +227,6 @@ console.log('getNotifications');
 		return null;
 	},
 
-	markAllAsRead : function(page_id, callback) {
-console.log('markAllAsRead');
-		var self = this;
-
-		var page = self.getPageDataById(page_id);
-		if (!page || !page.oz) return callback(0);
-
-		var url = page.page ? 'b/' + page_id + '/' : '';
-		$.ajax({
-			type     : 'POST',
-			url      : self.BASE_URL + url + self.ALREAD_URL
-				+ '?' + $.param({
-					hl     : 'en',
-					_reqid : self.getReqid(),
-					rt     : 'j'
-				}),
-			dataType : 'text',
-			data     : {
-				'f.req' : '[' + (1000 * new Date) + ']',
-				at      : page.oz[15]
-			},
-			success  : function(data) {
-				self.getUnreadCount(page_id, function(unread) {
-					page.unread = unread;
-					self.updateBadge();
-					callback(self.total);
-				});
-			}
-		});
-	},
-
 	getOneNotificationData : function(community_id, json) {
 console.log('getOneNotificationData');
 		var self = this;
