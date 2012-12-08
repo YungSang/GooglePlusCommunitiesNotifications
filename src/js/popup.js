@@ -161,7 +161,22 @@ function addNotificationToList(note, $ul) {
 
 	$('<div/>').addClass('title').html(actor).appendTo($li);
 
-	$('<div/>').html('&nbsp;').appendTo($li);
+	var status = [];
+	if (note.plusones) {
+		status.push('+' + note.plusones);
+	}
+	if (note.reshares) {
+		status.push('&rarr;' + note.reshares);
+	}
+	if (note.replies) {
+		status.push(note.replies + ' comment(s)');
+	}
+	if (status.length) {
+		$('<div/>').html(status.join(', ')).appendTo($li);
+	}
+	else {
+		$('<div/>').html('&nbsp;').appendTo($li);
+	}
 
 	var annotation = truncateText(note.text, 140);
 	if (note.attachment) {

@@ -266,17 +266,20 @@ console.log('getOneNotificationData');
 		if (!community) return null;
 
 		var note = {
-			id      : json[8],
-			url     : self.BASE_URL + json[21],
-			text    : json[47] || json[20],
-			time    : json[5], // item[30]/1000
-			actor   : {
+			id       : json[8],
+			url      : self.BASE_URL + json[21],
+			text     : json[47] || json[20],
+			time     : json[5], // item[30]/1000
+			actor    : {
 				id   : json[16],
 				name : json[3],
 				icon : self.getAbsoluteURL(json[18]),
-				url  : self.BASE_URL + json[24],
+				url  : self.BASE_URL + json[24]
 			},
-			is_new  : (json[30] > community.last)
+			replies  : json[93],
+			plusones : json[73][16],
+			reshares : json[96],
+			is_new   : (json[30] > community.last)
 		};
 
 		if (json[11].length) {
