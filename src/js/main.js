@@ -202,6 +202,9 @@ console.log('getNotifications');
 							var parsed_note = self.getOneNotificationData(community_id, note);
 							if (parsed_note) notes.push(parsed_note);
 						});
+						notes.sort(function(a, b) {
+							return (b.updated - a.updated);
+						});
 					}
 					callback(notes);
 				});
@@ -238,7 +241,8 @@ console.log('getOneNotificationData');
 			id       : json[8],
 			url      : self.BASE_URL + json[21],
 			text     : json[47] || json[20],
-			time     : json[5], // json[30]/1000
+			posted   : json[5],
+			updated  : json[30] / 1000,
 			actor    : {
 				id   : json[16],
 				name : json[3],

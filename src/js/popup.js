@@ -144,7 +144,7 @@ function addNotificationToList(note, $ul) {
 
 	var actor = $('<div/>').append($a).html();
 
-	var time = new Date(note.time);
+	var time = new Date(note.updated);
 	$('<div/>').addClass('datetime').text(time.toString()).appendTo($li);
 
 	$('<div/>').addClass('title').html(actor).appendTo($li);
