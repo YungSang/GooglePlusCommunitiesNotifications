@@ -269,7 +269,7 @@ console.log('getOneNotificationData');
 			id       : json[8],
 			url      : self.BASE_URL + json[21],
 			text     : json[47] || json[20],
-			time     : json[5], // item[30]/1000
+			time     : json[5], // json[30]/1000
 			actor    : {
 				id   : json[16],
 				name : json[3],
@@ -317,7 +317,7 @@ console.log('getOneNotificationData');
 					note.attachment.link  = attachment[24][1];
 					note.attachment.desc  = attachment[21];
 				}
-				else if (item[10] == 's:events') {
+				else if (json[10] == 's:events') {
 					note.attachment.title = attachment[3];
 					note.attachment.link  = self.BASE_URL + attachment[24][1];
 				}
