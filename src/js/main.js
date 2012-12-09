@@ -16,13 +16,21 @@ GooglePlusCommunitiesNotifications.prototype = {
 	init : function(callback) {
 		var self = this;
 
-		self.communities = [];
-		self.total = 0;
-
 		if (self.timer) {
 			clearTimeout(self.timer);
 			self.timer = null;
 		}
+
+		var popup = chrome.extension.getViews({type: 'popup'})[0];
+		if (popup && !callback) {
+			self.timer = setTimeout(function() {
+				self.init.call(self);
+			}, 30 * 1000);
+			return;
+		}
+
+		self.communities = [];
+		self.total = 0;
 
 		var $article = $('article').empty();
 
@@ -178,6 +186,9 @@ console.log('getInitData');
 console.log('getNotifications');
 		var self = this;
 
+		var community = self.getCommunityDataById(community_id);
+		if (!community) return callback([]);
+
 		$.ajax({
 			type     : 'POST',
 			url      : self.BASE_URL + self.LANDING_URL
@@ -205,6 +216,9 @@ console.log('getNotifications');
 						notes.sort(function(a, b) {
 							return (b.updated - a.updated);
 						});
+
+						community.unread = 0;
+						self.updateBadge();
 					}
 					callback(notes);
 				});
