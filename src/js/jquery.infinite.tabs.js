@@ -283,10 +283,10 @@
     if (direction < 0) { // move tabs left
       if (currentScrollableTabOffset === 0) {
         // if not yet scrolled, scroll most of a tab left but leave opts.initialTabSlideOffset pixels to show tab has slid under
-        currentScrollableTabOffset -= scrollerList.find('li:first').outerWidth() - opts.initialTabSlideOffset;
+        currentScrollableTabOffset -= (scrollerList.find('li:first').outerWidth() * opts.shiftNumOfTabs) - opts.initialTabSlideOffset;
       } else {
         // shift width of the left most tab
-        currentScrollableTabOffset -= scrollerList.find('li:nth-child(' + (currentTabIndex+1) + ')').outerWidth();
+        currentScrollableTabOffset -= scrollerList.find('li:nth-child(' + (currentTabIndex+1) + ')').outerWidth() * opts.shiftNumOfTabs;
       }
       scrollMax = -scroller.find('li:last').position().left + nav.position().left - scroller.position().left - nav.innerWidth() + 8 - opts.initialTabSlideOffset; // 8 shadow
       if (currentScrollableTabOffset < scrollMax) {
@@ -294,7 +294,7 @@
         currentScrollableTabOffset = scrollMax;
       }
     } else { // move tabs right
-      currentScrollableTabOffset += scrollerList.find('li:nth-child(' + (currentTabIndex) + ')').outerWidth();
+      currentScrollableTabOffset += scrollerList.find('li:nth-child(' + (currentTabIndex) + ')').outerWidth() * opts.shiftNumOfTabs;
       if (currentScrollableTabOffset >= 0) {
         currentScrollableTabOffset = 0;
       }
@@ -356,6 +356,7 @@
   // plugin defaults
   //
   $.fn.infiniteTabs.defaults = {
-    initialTabSlideOffset: 10
+    initialTabSlideOffset: 10,
+    shiftNumOfTabs: 5
   };
 }(jQuery));

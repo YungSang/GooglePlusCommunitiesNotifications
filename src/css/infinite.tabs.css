@@ -20,7 +20,12 @@ ul.infinite-tabs {
         width: 10000px;
         list-style: none;
         margin: 0;
-        position: relative; }
+        position: relative;
+
+        -webkit-transition: left 0.5s ease;
+        transition: left 0.5s ease;
+
+      }
         ul.infinite-tabs li.scroller > div ul li {
           /* if no locked tabs, then show the curve */ }
           ul.infinite-tabs li.scroller > div ul li.absolute-first:first-child:before, ul.infinite-tabs li.scroller div ul li.absolute-first:first-child a:before {
