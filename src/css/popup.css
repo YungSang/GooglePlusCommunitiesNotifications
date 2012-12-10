@@ -120,15 +120,25 @@ article ul li:last-child {
 	margin-bottom:0;
 }
 
-article ul li.unread {
-	background-color:#ffffcc;
-}
-
 article ul li.notification {
 	cursor:pointer;
 }
 article ul li.notification:hover {
 	background-color:#edeff4;
+}
+
+article ul li.unread {
+	background-color:#ffffcc;
+}
+article ul li.unread:hover {
+	background-color:#ffffb0;
+}
+
+article ul li.new {
+	background-color:#ffdddd;
+}
+article ul li.new:hover {
+	background-color:#ffd6d6;
 }
 
 article ul li img {

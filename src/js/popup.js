@@ -129,8 +129,12 @@ function addNotificationToList(note, $ul) {
 	if (note.id) {
 		$li.attr('id', 'note_' + note.id);
 	}
-	if (note.is_new) {
+
+	if (note.is_unread) {
 		$li.addClass('unread');
+	}
+	if (note.is_new) {
+		$li.addClass('new');
 	}
 
 	$('<img/>', {
