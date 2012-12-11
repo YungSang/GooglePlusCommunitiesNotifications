@@ -288,7 +288,9 @@ console.log('getOneNotificationData');
 				note.attachment.image = attachment[5] && attachment[5][1];
 				note.attachment.title = attachment[3];
 				note.attachment.link  = attachment[24][1];
-//					note.attachment.desc  = attachment[21];
+				if (!attachment[47] || !attachment[47][0] || !(attachment[47][0][1] === 'picasa')) {
+					note.attachment.desc  = attachment[21];
+				}
 			}
 			else if ((attachment[24][4] === 'document')
 				|| (attachment[24][3] === 'text/html')) {
@@ -298,7 +300,9 @@ console.log('getOneNotificationData');
 					note.attachment.image = attachment2[5] ? attachment2[5][1] : (attachment2[41] && attachment2[41][0][1]);
 					note.attachment.title = attachment[3];
 					note.attachment.link  = attachment[24][1];
-//					note.attachment.desc  = attachment[21];
+					if (!attachment[47] || !attachment[47][0] || !(attachment[47][0][1] === 'picasa')) {
+						note.attachment.desc  = attachment[21];
+					}
 				}
 				else if (attachment[21]) {
 					note.attachment.title = attachment[3];

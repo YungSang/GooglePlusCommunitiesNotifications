@@ -210,6 +210,8 @@ function addNotificationToList(note, $ul) {
 
 function truncateText(text, length) {
 	text = text.replace(/(<br\s*\/?>)+/g, ' ');
+	text = text.replace(/<a[^>]*>/g, ' ');
+	text = text.replace(/<\/a>/g, ' ');
 	return (text.length > length) ? text.substr(0, length - 3) + '...' : text;
 }
 
