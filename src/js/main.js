@@ -254,7 +254,7 @@ console.log('getOneNotificationData');
 		var note = {
 			id        : json[8],
 			url       : self.BASE_URL + json[21],
-			text      : json[47] || json[20],
+			text      : json[47] || json[4], // json[20],
 			posted    : json[5],
 			updated   : json[30] / 1000,
 			actor     : {
@@ -295,7 +295,7 @@ console.log('getOneNotificationData');
 				var attachment2 = json[11][1];
 				if (attachment2 && ((attachment2[24][4] === 'image')
 					|| (attachment2[24][4] === 'photo'))) {
-					note.attachment.image = attachment2[5] && attachment2[5][1];
+					note.attachment.image = attachment2[5] ? attachment2[5][1] : (attachment2[41] && attachment2[41][0][1]);
 					note.attachment.title = attachment[3];
 					note.attachment.link  = attachment[24][1];
 //					note.attachment.desc  = attachment[21];
