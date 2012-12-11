@@ -152,7 +152,6 @@ article ul li img {
 
 article ul li .datetime {
 	color: #36C;
-	font-weight: bold;
 }
 
 article ul li .title {
@@ -169,9 +168,26 @@ article ul li hr {
 }
 
 article ul li .annotation {
-	margin-left: 20px;
-	width: 424px;
+	margin-left: 10px;
+	width: 434px;
 	overflow-x: hidden;
+}
+
+article ul li .comment {
+	margin-left: 10px;
+	width: 434px;
+	overflow-x: hidden;
+	color: #333;
+}
+
+article ul li .comment img {
+	width: 32px;
+	height: 32px;
+}
+
+article ul li .actor {
+	font-weight: bolder;
+	text-decoration: none;
 }
 
 article ul li img.photo {

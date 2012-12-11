@@ -316,6 +316,20 @@ console.log('getOneNotificationData');
 			}
 		}
 
+		if (json[7].length) {
+			var comment = json[7][json[7].length - 1];
+			note.comment = {
+				text   : comment[2],
+				posted : comment[3],
+				actor  : {
+					id   : comment[6],
+					name : comment[1],
+					icon : self.getAbsoluteURL(comment[16]),
+					url  : self.BASE_URL + comment[10]
+				}
+			}
+		}
+
 		return note;
 	},
 

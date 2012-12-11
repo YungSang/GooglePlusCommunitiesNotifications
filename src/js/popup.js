@@ -144,7 +144,7 @@ function addNotificationToList(note, $ul) {
 	var $a = $('<a/>', {
 		href  : note.actor.url,
 		title : note.actor.name
-	}).append(note.actor.name);
+	}).addClass('actor').append(note.actor.name);
 
 	var actor = $('<div/>').append($a).html();
 
@@ -189,6 +189,21 @@ function addNotificationToList(note, $ul) {
 	}
 
 	$('<div/>').addClass('annotation').html(annotation).appendTo($li);
+
+	if (note.comment) {
+		$('<hr/>').appendTo($li);
+
+		var $comment = $('<div/>').addClass('comment').appendTo($li);
+
+		$('<img/>', {
+			src : note.comment.actor.icon
+		}).appendTo($comment);
+
+		$('<div/>').addClass('actor').append(note.comment.actor.name).appendTo($comment);
+
+		var comment = truncateText(note.comment.text, 140);
+		$comment.append(comment);
+	}
 
 	$('<div/>').addClass('clear').appendTo($li);
 }
