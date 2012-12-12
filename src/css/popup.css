@@ -60,9 +60,14 @@ body > nav ul {
 body > nav ul.infinite-tabs ul {
 	padding-left: 10px;
 }
+body > nav ul.infinite-tabs li a {
+	height: 24px;
+	padding: 3px 10px;
+}
 body > nav ul.infinite-tabs li img {
-	width : 19px;
-	height: 19px;
+	width : 24px;
+	height: 24px;
+	border-radius:4px;
 }
 
 /* badger */

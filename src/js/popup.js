@@ -97,7 +97,12 @@ function setInfiniteTab() {
 
 	var community_id = localStorage.getItem('last_community');
 	if (community_id) {
-		$('#community_' + community_id).click();
+		var $community = $('#community_' + community_id);
+		var $first = $('li.scroller li:first', $tabs);
+		if ($community.attr('id') !== $first.attr('id')) {
+			$tabs.infiniteTabs('prepend-tab', $community);
+		}
+		$community.click();
 	}
 	else {
 		$('#loading').hide();

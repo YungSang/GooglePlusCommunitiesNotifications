@@ -137,7 +137,13 @@ console.log('getCommunities');
 								latest : community[4][2],
 								last   : community[4][3]
 							});
-					});
+						});
+						communities.sort(function(a, b) {
+							if (b.unread == a.unread) {
+								return (b.latest - a.latest);
+							}
+							return (b.unread - a.unread);
+						});
 					}
 					callback(communities);
 				});
