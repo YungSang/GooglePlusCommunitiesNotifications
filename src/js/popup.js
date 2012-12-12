@@ -98,15 +98,15 @@ function setInfiniteTab() {
 	var community_id = localStorage.getItem('last_community');
 	if (community_id) {
 		var $community = $('#community_' + community_id);
-		var $first = $('li.scroller li:first', $tabs);
-		if ($community.attr('id') !== $first.attr('id')) {
-			$tabs.infiniteTabs('prepend-tab', $community);
+		if ($community.length) {
+			var $first = $('li.scroller li:first', $tabs);
+			if ($community.attr('id') !== $first.attr('id')) {
+				$tabs.infiniteTabs('prepend-tab', $community);
+			}
+			$community.click();
 		}
-		$community.click();
 	}
-	else {
-		$('#loading').hide();
-	}
+	$('#loading').hide();
 
 	$tabs.infiniteTabs( 'adjust-to-fit' );
 }
