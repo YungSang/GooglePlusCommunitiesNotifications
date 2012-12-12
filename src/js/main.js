@@ -29,33 +29,29 @@ GooglePlusCommunitiesNotifications.prototype = {
 			return;
 		}
 
-		self.communities = [];
-		self.total = 0;
-
-		var $article = $('article').empty();
-
 		if (!self.oz || callback) {
 			self.getInitData(1, function(data) {
 				self.oz = data;
-				self.setCommunities($article, callback);
+				self.setCommunities(callback);
 			});
 		}
 		else {
-			self.setCommunities($article, callback);
+			self.setCommunities(callback);
 		}
 	},
 
-	setCommunities : function($article, callback) {
+	setCommunities : function(callback) {
 		var self = this;
 
 		self.getCommunities(function(communities) {
-			$ul = $('ul.infinite-tabs', $article);
-			if (!$ul.length) {
-				$ul = $('<ul/>', {
-					class : 'infinite-tabs'
-				});
-				$article.append($ul);
-			}
+			self.communities = [];
+			self.total = 0;
+
+			var $article = $('article').empty();
+			$ul = $('<ul/>', {
+				class : 'infinite-tabs'
+			});
+			$article.append($ul);
 
 			communities.forEach(function(community) {
 				var $li = $('<li/>', {
