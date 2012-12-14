@@ -12,6 +12,7 @@ GooglePlusCommunitiesNotifications.prototype = {
 	INIT_URL    : '_/initialdata',
 	COMMUS_URL  : '_/communities/gethome',
 	LANDING_URL : '_/communities/landing',
+	PLUSONE_URL : '_/plusone',
 
 	init : function(callback) {
 		var self = this;
@@ -267,6 +268,7 @@ console.log('getOneNotificationData');
 			},
 			replies   : json[93],
 			plusones  : json[73][16],
+			is_plused : json[73][13],
 			reshares  : json[96],
 			is_new    : ((json[5] * 1000) > community.last),
 			is_unread : (json[30] > community.last)
@@ -337,6 +339,29 @@ console.log('getOneNotificationData');
 		}
 
 		return note;
+	},
+
+	setPlusOne : function(item_id, plusone, callback) {
+console.log('setPlusOne');
+		var self = this;
+
+		$.ajax({
+			type     : 'POST',
+			url      : self.BASE_URL + self.PLUSONE_URL
+				+ '?' + $.param({
+					hl     : 'en',
+					_reqid : self.getReqid(),
+					rt     : 'j'
+				}),
+			data     : {
+				itemId : 'buzz:' + item_id,
+				set    : (plusone ? 'true' : 'false'),
+				at     : self.oz[15]
+			},
+			success  : function(data) {
+				if (typeof callback === 'fucntion') callback();
+			}
+		});
 	},
 
 	SEQUENCE : 0,

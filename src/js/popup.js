@@ -142,6 +142,34 @@ function addNotificationToList(note, $ul) {
 		$li.addClass('new');
 	}
 
+	var $div = $('<div/>', {
+		class     : 'plusone',
+		'data-id' :  note.id
+	}).append('<div/>')
+	.click(function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		var $this = $(this);
+		var id = $this.attr('data-id');
+
+		if ($this.hasClass('on')) {
+			$this.removeClass('on');
+			bg.GPCN.setPlusOne(id, false);
+		}
+		else {
+			$this.addClass('on');
+			bg.GPCN.setPlusOne(id, true);
+		}
+
+		return false;
+	})
+	.appendTo($li);
+
+	if (note.is_plused) {
+		$div.addClass('on');
+	}
+
 	$('<img/>', {
 		src : note.actor.icon
 	}).appendTo($li);
