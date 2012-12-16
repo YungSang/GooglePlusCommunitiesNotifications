@@ -1,0 +1,27 @@
+{
+// in manifest.json and popup.html
+  "my_name" : {
+    "message" : "Google+ Communities Notifications",
+    "description" : "The name of this chrome extension"
+  },
+  "my_desc" : {
+    "message" : "Get notifications of Google+ Communities",
+    "description" : "The description of this chrome extension"
+  },
+
+// in popup.html
+  "click_a_tab_to_show" : {
+    "message" : "Click an above tab to show notifications of a community here.",
+    "description" : "The first message in the popup window"
+  },
+
+// in popup.js
+  "no_communities" : {
+    "message" : "No communities",
+    "description" : "An error message in the popup window"
+  },
+  "no_notifications" : {
+    "message" : "No notifications",
+    "description" : "An error message in the popup window"
+  }
+}

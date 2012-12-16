@@ -1,0 +1,27 @@
+{
+// in manifest.json and popup.html
+  "my_name" : {
+    "message" : "Google+コミュニティの通知",
+    "description" : "The name of this chrome extension"
+  },
+  "my_desc" : {
+    "message" : "Google+コミュニティの通知を取って来ます。",
+    "description" : "The description of this chrome extension"
+  },
+
+// in popup.html
+  "click_a_tab_to_show" : {
+    "message" : "上記のタブをクリックするとコミュニティの通知がここに表示されます。",
+    "description" : "The first message in the popup window"
+  },
+
+// in popup.js
+  "no_communities" : {
+    "message" : "参加しているコミュニティはありません。",
+    "description" : "An error message in the popup window"
+  },
+  "no_notifications" : {
+    "message" : "このコミュニティには通知がありません。",
+    "description" : "An error message in the popup window"
+  }
+}

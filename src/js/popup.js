@@ -51,7 +51,8 @@ function setInfiniteTab() {
 		$('ul', $article).remove();
 		$('header h3 a', $article).empty();
 		$('header > a', $article).remove();
-		$('<ul/>').appendTo($article).append('<li>No communities</li>');
+		var msg = chrome.i18n.getMessage('no_communities');
+		$('<ul/>').appendTo($article).append('<li>' + msg + '</li>');
 	}
 
 	$tabs.infiniteTabs().find('li').click(function(e) {
@@ -78,7 +79,8 @@ function setInfiniteTab() {
 
 		bg.GPCN.getNotifications(community_id, function(notes) {
 			if (!notes.length) {
-				$('<ul/>').appendTo($article).append('<li>No notifications</li>');
+				var msg = chrome.i18n.getMessage('no_notifications');
+				$('<ul/>').appendTo($article).append('<li>' + msg + '</li>');
 				$('#loading').hide();
 				return;
 			}
@@ -255,5 +257,13 @@ function hidePopup() {
 }
 
 $(function() {
+	$('.need2translate').each(function() {
+		$this = $(this);
+		var translated = $this.html().replace(/__MSG_(.+)__/g, function (m, key) {
+			return chrome.i18n.getMessage(key);
+		});
+		$this.html(translated);
+	});
+
 	loadCommunities();
 });
