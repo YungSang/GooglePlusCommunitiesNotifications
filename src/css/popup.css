@@ -200,6 +200,28 @@ article ul li .title a.unread {
 	font-weight: bold;
 }
 
+article ul li .status {
+	color: #999;
+}
+
+article ul li .reshare {
+	display: inline-block;
+	margin-right: 1px;
+	width: 14px;
+	height: 11px;
+	vertical-align: middle;
+	background: no-repeat url('/img/plusone.png') -96px -137px;
+}
+
+article ul li .replies {
+	display: inline-block;
+	margin-right: 2px;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	background: no-repeat url('/img/replies.png');
+}
+
 article ul li hr {
 	clear: both;
 	border: 0;

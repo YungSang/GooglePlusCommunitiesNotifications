@@ -193,13 +193,13 @@ function addNotificationToList(note, $ul) {
 		status.push('+' + note.plusones);
 	}
 	if (note.reshares) {
-		status.push('&rarr;' + note.reshares);
+		status.push('<div class="reshare"></div>' + note.reshares);
 	}
 	if (note.replies) {
-		status.push(note.replies + ' comment(s)');
+		status.push('<div class="replies"></div>' + note.replies);
 	}
 	if (status.length) {
-		$('<div/>').html(status.join(', ')).appendTo($li);
+		$('<div class="status"/>').html(status.join('&nbsp;&nbsp;')).appendTo($li);
 	}
 	else {
 		$('<div/>').html('&nbsp;').appendTo($li);
