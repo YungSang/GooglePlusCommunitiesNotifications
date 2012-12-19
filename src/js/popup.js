@@ -130,8 +130,7 @@ function loadCommunities() {
 
 function addNotificationToList(note, $ul) {
 	var $li = $('<li/>', {
-		class : 'notification',
-		title : note.url
+		class : 'notification'
 	}).appendTo($ul);
 	if (note.id) {
 		$li.attr('id', 'note_' + note.id);
@@ -188,6 +187,11 @@ function addNotificationToList(note, $ul) {
 
 	$('<div/>').addClass('title').html(actor).appendTo($li);
 
+	var $stream = $('<a/>', {
+		href  : note.stream.url,
+		title : note.stream.name
+	}).addClass('stream').append(note.stream.name).appendTo($li);
+
 	var status = [];
 	if (note.plusones) {
 		status.push('+' + note.plusones);
@@ -198,12 +202,7 @@ function addNotificationToList(note, $ul) {
 	if (note.replies) {
 		status.push('<div class="replies"></div>' + note.replies);
 	}
-	if (status.length) {
-		$('<div class="status"/>').html(status.join('&nbsp;&nbsp;')).appendTo($li);
-	}
-	else {
-		$('<div/>').html('&nbsp;').appendTo($li);
-	}
+	$('<div class="status"/>').html(status.join('&nbsp;&nbsp;')).appendTo($li);
 
 	var annotation = truncateText(note.text, 140);
 	if (note.attachment) {

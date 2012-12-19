@@ -266,6 +266,11 @@ console.log('getOneNotificationData');
 				icon : self.getAbsoluteURL(json[18]),
 				url  : self.BASE_URL + json[24]
 			},
+			stream    : {
+				id   : json[108][3],
+				name : json[108][2],
+				url  : self.BASE_URL + 'communities/' + json[108][0] + '/stream/' + json[108][3]
+			},
 			replies   : json[93],
 			plusones  : json[73][16],
 			is_plused : json[73][13],
