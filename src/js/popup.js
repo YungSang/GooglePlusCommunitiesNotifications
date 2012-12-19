@@ -38,7 +38,7 @@ $('article a').live('click' ,function(event) {
 });
 
 $('article li.notification').live('click' ,function(event) {
-	window.open($(this).attr('title'), '');
+	window.open($(this).attr('data-url'), '');
 	hidePopup();
 });
 
@@ -130,7 +130,8 @@ function loadCommunities() {
 
 function addNotificationToList(note, $ul) {
 	var $li = $('<li/>', {
-		class : 'notification'
+		class      : 'notification',
+		'data-url' : note.url
 	}).appendTo($ul);
 	if (note.id) {
 		$li.attr('id', 'note_' + note.id);
