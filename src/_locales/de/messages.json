@@ -23,5 +23,19 @@
   "no_notifications" : {
     "message" : "Keine Meldungen",
     "description" : "An error message in the popup window"
+  },
+
+// in optinos.html
+  "description_of_omitting" : {
+    "message" : "Aktivieren Sie Kontrollkästchen, um eine Community Benachrichtigung weglassen.",
+    "description" : "A description of omitting in the optinos window"
+  },
+  "community" : {
+    "message" : "Community",
+    "description" : "A column name in the optinos window"
+  },
+  "community_hide" : {
+    "message" : "Verbergen",
+    "description" : "A column name in the optinos window"
   }
 }

@@ -122,8 +122,12 @@ function updateBadges() {
 
 function loadCommunities() {
 	var $ul = $("nav ul.infinite-tabs").empty();
+	var hidden_communities = bg.GPCN.getHiddenCommunities();
 	bg.$('article ul li').each(function() {
-		$ul.append($(this).clone());
+		var id = $(this).attr('data-id');
+		if ($.inArray(id, hidden_communities) == -1) {
+			$ul.append($(this).clone());
+		}
 	});
 	setTimeout(setInfiniteTab, 100);
 }

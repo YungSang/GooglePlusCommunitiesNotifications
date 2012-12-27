@@ -23,5 +23,19 @@
   "no_notifications" : {
     "message" : "このコミュニティには通知がありません。",
     "description" : "An error message in the popup window"
+  },
+
+// in optinos.html
+  "description_of_omitting" : {
+    "message" : "通知を受けとりたくないコミュニティをチェックして下さい。",
+    "description" : "A description of omitting in the optinos window"
+  },
+  "community" : {
+    "message" : "コミュニティ",
+    "description" : "A column name in the optinos window"
+  },
+  "community_hide" : {
+    "message" : "非表示",
+    "description" : "A column name in the optinos window"
   }
 }

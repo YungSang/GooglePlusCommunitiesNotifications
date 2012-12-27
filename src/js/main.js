@@ -56,9 +56,10 @@ GooglePlusCommunitiesNotifications.prototype = {
 
 			communities.forEach(function(community) {
 				var $li = $('<li/>', {
-					id    : 'community_' + community.id,
-					class : 'community',
-					title : self.BASE_URL + 'communities/' + community.id
+					id        : 'community_' + community.id,
+					'data-id' : community.id,
+					class     : 'community',
+					title     : self.BASE_URL + 'communities/' + community.id
 				});
 
 				$li.appendTo($ul);
@@ -89,8 +90,11 @@ GooglePlusCommunitiesNotifications.prototype = {
 	updateBadge : function() {
 		var self = this;
 		var total = 0;
+		var hidden_communities = self.getHiddenCommunities();
 		self.communities.forEach(function(community) {
-			total += community.unread;
+			if ($.inArray(community.id, hidden_communities) == -1) {
+				total += community.unread;
+			}
 		});
 		chrome.browserAction.setBadgeBackgroundColor({color : [255, 0, 0, 255]});
 		if (total) {
@@ -397,6 +401,23 @@ console.log('setPlusOne');
 		else {
 			return url;
 		}
+	},
+
+	getHiddenCommunities : function() {
+		var hidden_communities = localStorage.getItem('hidden_communities');
+		if (hidden_communities) {
+			hidden_communities = JSON.parse(hidden_communities);
+		}
+		else {
+			hidden_communities = [];
+		}
+		return hidden_communities;
+	},
+
+	setHiddenCommunities : function(hidden_communities) {
+		var self = this;
+		localStorage.setItem('hidden_communities', JSON.stringify(hidden_communities));
+		self.updateBadge();
 	}
 };
 
