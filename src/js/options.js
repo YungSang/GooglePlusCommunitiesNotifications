@@ -39,6 +39,8 @@ console.log('loadCommunities');
       alt : community.name
     }).appendTo($a1);
 
+    $td.badger(community.unread || '');
+
     $td = $('<td/>', {
       class : 'community_name'
     }).appendTo($tr);

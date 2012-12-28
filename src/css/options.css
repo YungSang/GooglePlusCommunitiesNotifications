@@ -13,7 +13,26 @@ body {
   margin: 0 auto -60px;
 }
 
+/* badger */
+.badger-outter {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  top: -5px;
+}
+.badger-inner {
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+.badger-badge {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
 .community_image {
+  position: relative;
   width: 80px;
 }
 .community_image img {
