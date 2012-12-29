@@ -50,7 +50,7 @@ GooglePlusCommunitiesNotifications.prototype = {
 
 			var $article = $('article').empty();
 			$ul = $('<ul/>', {
-				class : 'infinite-tabs'
+				'class' : 'infinite-tabs'
 			});
 			$article.append($ul);
 
@@ -58,7 +58,7 @@ GooglePlusCommunitiesNotifications.prototype = {
 				var $li = $('<li/>', {
 					id        : 'community_' + community.id,
 					'data-id' : community.id,
-					class     : 'community',
+					'class'   : 'community',
 					title     : self.BASE_URL + 'communities/' + community.id
 				});
 
@@ -113,12 +113,12 @@ console.log('getCommunities');
 		var communities = [];
 		$.ajax({
 			type     : 'POST',
-			url      : self.BASE_URL + self.COMMUS_URL
-				+ '?' + $.param({
+			url      : self.BASE_URL + self.COMMUS_URL + '?' +
+				$.param({
 					hl     : 'en',
 					_reqid : self.getReqid(),
 					rt     : 'j'
-			}),
+				}),
 			dataType : 'text',
 			data     : {
 				at : self.oz[15]
@@ -162,15 +162,15 @@ console.log('getInitData');
 
 		$.ajax({
 			type     : 'POST',
-			url      : self.BASE_URL + self.INIT_URL
-				+ '?' + $.param({
+			url      : self.BASE_URL + self.INIT_URL + '?' +
+				$.param({
 					hl     : 'en',
 					_reqid : self.getReqid(),
 					rt     : 'j'
 				}),
 			dataType : 'text',
 			data     : {
-				key : key,
+				key : key
 			},
 			success  : function(data) {
 				var text = data.substr(5).replace(/(\\n|\n)/g, '');
@@ -198,8 +198,8 @@ console.log('getNotifications');
 
 		$.ajax({
 			type     : 'POST',
-			url      : self.BASE_URL + self.LANDING_URL
-				+ '?' + $.param({
+			url      : self.BASE_URL + self.LANDING_URL + '?' +
+				$.param({
 					hl     : 'en',
 					_reqid : self.getReqid(),
 					rt     : 'j'
@@ -296,8 +296,7 @@ console.log('getOneNotificationData');
 				note.attachment.link  = attachment[24][1];
 				note.attachment.desc  = attachment[21];
 			}
-			else if ((attachment[24][4] === 'image')
-				|| (attachment[24][4] === 'photo')) {
+			else if ((attachment[24][4] === 'image') || (attachment[24][4] === 'photo')) {
 				note.attachment.image = attachment[5] && attachment[5][1];
 				note.attachment.title = attachment[3];
 				note.attachment.link  = attachment[24][1];
@@ -305,14 +304,14 @@ console.log('getOneNotificationData');
 					note.attachment.desc  = attachment[21];
 				}
 			}
-			else if ((attachment[24][4] === 'document')
-				|| (attachment[24][3] === 'text/html')) {
+			else if ((attachment[24][4] === 'document') || (attachment[24][3] === 'text/html')) {
 				var attachment2 = json[11][1];
-				if (attachment2 && ((attachment2[24][4] === 'image')
-					|| (attachment2[24][4] === 'photo'))) {
-					note.attachment.image = attachment2[5] ? attachment2[5][1] : (attachment2[41] && attachment2[41][0][1]);
+				if (attachment2 && ((attachment2[24][4] === 'image') || (attachment2[24][4] === 'photo'))) {
+					note.attachment.image = attachment2[5] ?
+						attachment2[5][1] : (attachment2[41] && attachment2[41][0][1]);
 					note.attachment.title = attachment[3];
-					note.attachment.link  = attachment[24][1];
+					note.attachment.link  =	(attachment[24][1].substr(0, 4) === 'http' ?
+						attachment[24][1] : self.BASE_URL + attachment[24][1]);
 					if (!attachment[47] || !attachment[47][0] || !(attachment[47][0][1] === 'picasa')) {
 						note.attachment.desc  = attachment[21];
 					}
@@ -344,7 +343,7 @@ console.log('getOneNotificationData');
 					icon : self.getAbsoluteURL(comment[16]),
 					url  : self.BASE_URL + comment[10]
 				}
-			}
+			};
 		}
 
 		return note;
@@ -356,8 +355,8 @@ console.log('setPlusOne');
 
 		$.ajax({
 			type     : 'POST',
-			url      : self.BASE_URL + self.PLUSONE_URL
-				+ '?' + $.param({
+			url      : self.BASE_URL + self.PLUSONE_URL + '?' +
+				$.param({
 					hl     : 'en',
 					_reqid : self.getReqid(),
 					rt     : 'j'
@@ -376,7 +375,7 @@ console.log('setPlusOne');
 	SEQUENCE : 0,
 	getReqid : function() {
 		var sequence = this.SEQUENCE++;
-		var now = new Date;
+		var now = new Date();
 		var seconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
 		return seconds + sequence * 1E5;
 	},
