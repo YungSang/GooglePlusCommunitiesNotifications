@@ -56,10 +56,10 @@ GooglePlusCommunitiesNotifications.prototype = {
 
 			communities.forEach(function(community) {
 				var $li = $('<li/>', {
-					id        : 'community_' + community.id,
-					'data-id' : community.id,
-					'class'   : 'community',
-					title     : self.BASE_URL + 'communities/' + community.id
+					id         : 'community_' + community.id,
+					'data-id'  : community.id,
+					'class'    : 'community',
+					'data-url' : self.HOME_URL + 'communities/' + community.id
 				});
 
 				$li.appendTo($ul);
@@ -260,7 +260,7 @@ console.log('getOneNotificationData');
 
 		var note = {
 			id        : json[8],
-			url       : self.BASE_URL + json[21],
+			url       : self.HOME_URL + json[21],
 			text      : json[47] || json[4], // json[20],
 			posted    : json[5],
 			updated   : json[30] / 1000,
@@ -268,12 +268,12 @@ console.log('getOneNotificationData');
 				id   : json[16],
 				name : json[3],
 				icon : self.getAbsoluteURL(json[18]),
-				url  : self.BASE_URL + json[24]
+				url  : self.HOME_URL + ((json[24].substr(0, 2) === './') ? json[24].substring(2) : json[24])
 			},
 			stream    : {
 				id   : json[108][3],
 				name : json[108][2],
-				url  : self.BASE_URL + 'communities/' + json[108][0] + '/stream/' + json[108][3]
+				url  : self.HOME_URL + 'communities/' + json[108][0] + '/stream/' + json[108][3]
 			},
 			replies   : json[93],
 			plusones  : json[73][16],
@@ -311,7 +311,7 @@ console.log('getOneNotificationData');
 						attachment2[5][1] : (attachment2[41] && attachment2[41][0][1]);
 					note.attachment.title = attachment[3];
 					note.attachment.link  =	(attachment[24][1].substr(0, 4) === 'http' ?
-						attachment[24][1] : self.BASE_URL + attachment[24][1]);
+						attachment[24][1] : self.HOME_URL + attachment[24][1]);
 					if (!attachment[47] || !attachment[47][0] || !(attachment[47][0][1] === 'picasa')) {
 						note.attachment.desc  = attachment[21];
 					}
@@ -323,7 +323,7 @@ console.log('getOneNotificationData');
 				}
 				else if (json[10] == 's:events') {
 					note.attachment.title = attachment[3];
-					note.attachment.link  = self.BASE_URL + attachment[24][1];
+					note.attachment.link  = self.HOME_URL + attachment[24][1];
 				}
 				else {
 					note.attachment.title = attachment[3];
@@ -341,7 +341,7 @@ console.log('getOneNotificationData');
 					id   : comment[6],
 					name : comment[1],
 					icon : self.getAbsoluteURL(comment[16]),
-					url  : self.BASE_URL + comment[10]
+					url  : self.HOME_URL + comment[10]
 				}
 			};
 		}

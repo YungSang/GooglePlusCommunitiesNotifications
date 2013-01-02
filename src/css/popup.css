@@ -37,7 +37,7 @@ body > header nav a {
 	text-decoration: none;
 }
 body > header nav a#close {
-	padding-left: 10px;
+	margin-left: 10px;
 	color: #333;
 }
 
@@ -190,14 +190,12 @@ article ul li img {
 }
 
 article ul li .datetime {
-	color: #36C;
+	text-decoration: none;
 }
 
-article ul li .title {
-}
-
-article ul li .title a.unread {
-	font-weight: bold;
+article ul li .actor {
+	font-weight: bolder;
+	text-decoration: none;
 }
 
 article ul li .stream {
@@ -249,11 +247,6 @@ article ul li .comment {
 article ul li .comment img {
 	width: 32px;
 	height: 32px;
-}
-
-article ul li .actor {
-	font-weight: bolder;
-	text-decoration: none;
 }
 
 article ul li img.photo {

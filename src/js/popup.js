@@ -66,15 +66,15 @@ function setInfiniteTab() {
 		// code goes here to react to tab change
 		$('h3 a', $article)
 			.attr({
-				href  : $(this).attr('title'),
-				title : $('a', this).attr('title')
+				href  : $(this).attr('data-url'),
+				title : $(this).attr('data-url')
 			})
 			.empty().append($('a', this).attr('title'));
 
 		$('ul', $article).remove();
 		$('header > a', $article).remove();
 
-		var community_id = $(this).attr('id').substring(10);
+		var community_id = $(this).attr('data-id');
 		localStorage.setItem('last_community', community_id);
 
 		bg.GPCN.getNotifications(community_id, function(notes) {
@@ -180,21 +180,20 @@ function addNotificationToList(note, $ul) {
 		src : note.actor.icon
 	}).appendTo($li);
 
-	var $a = $('<a/>', {
-		href  : note.actor.url,
-		title : note.actor.name
-	}).addClass('actor').append(note.actor.name);
-
-	var actor = $('<div/>').append($a).html();
-
 	var time = new Date(note.updated);
-	$('<div/>').addClass('datetime').text(time.toString()).appendTo($li);
+	$('<a/>', {
+		href  : note.url,
+		title : note.url
+	}).addClass('datetime').append(time.toString()).appendTo($li).wrap('<div/>');
 
-	$('<div/>').addClass('title').html(actor).appendTo($li);
+	$('<a/>', {
+		href  : note.actor.url,
+		title : note.actor.url
+	}).addClass('actor').append(note.actor.name).appendTo($li).wrap('<div/>');
 
-	var $stream = $('<a/>', {
+	$('<a/>', {
 		href  : note.stream.url,
-		title : note.stream.name
+		title : note.stream.url
 	}).addClass('stream').append(note.stream.name).appendTo($li);
 
 	var status = [];
