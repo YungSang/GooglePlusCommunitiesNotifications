@@ -190,9 +190,12 @@
   getLeftMostTabIndex = function(scroller, scrollableTabOffset) {
     var tabIndex = 0,
         tabFound = false;
+
+    var scrollLeft = scroller.find('>div').scrollLeft();
+
     scroller.find('ul li').each(function (index, elem) {
       if (!tabFound) {
-        if ($(elem).position().left >= -scrollableTabOffset) {
+        if ($(elem).position().left >= (-scrollableTabOffset + scrollLeft)) {
           tabFound = true;
         } else {
           tabIndex += 1;
@@ -280,6 +283,8 @@
         scrollerList = scroller.find('ul'),
         scrollMax;
 
+    var scrollLeft = scroller.find('>div').scrollLeft();
+
     if (direction < 0) { // move tabs left
       if (currentScrollableTabOffset === 0) {
         // if not yet scrolled, scroll most of a tab left but leave opts.initialTabSlideOffset pixels to show tab has slid under
@@ -289,14 +294,16 @@
         currentScrollableTabOffset -= scrollerList.find('li:nth-child(' + (currentTabIndex+1) + ')').outerWidth() * opts.shiftNumOfTabs;
       }
       scrollMax = -scroller.find('li:last').position().left + nav.position().left - scroller.position().left - nav.innerWidth() + 8 - opts.initialTabSlideOffset; // 8 shadow
+      scrollMax += scrollLeft;
       if (currentScrollableTabOffset < scrollMax) {
         // never scroll beyond the last tab
         currentScrollableTabOffset = scrollMax;
       }
     } else { // move tabs right
       currentScrollableTabOffset += scrollerList.find('li:nth-child(' + (currentTabIndex) + ')').outerWidth() * opts.shiftNumOfTabs;
-      if (currentScrollableTabOffset >= 0) {
-        currentScrollableTabOffset = 0;
+      currentScrollableTabOffset += 10;
+      if (currentScrollableTabOffset >= scrollLeft) {
+        currentScrollableTabOffset = scrollLeft;
       }
     }
 
@@ -335,7 +342,12 @@
         $(this).find('li.scroller ul').append(tab);
       } else {
         // insert at start before first non hidden element
-        $(this).find('li.scroller ul li:not(.hidden):first').before(tab);
+        var $first = $(this).find('li.scroller ul li:not(.hidden):first');
+        if ($first.hasClass('absolute-first')) {
+          $first.removeClass('absolute-first');
+          $(tab).addClass('absolute-first');
+        }
+        $first.before(tab);
       }
       adjustToFit.call(this);
     }
