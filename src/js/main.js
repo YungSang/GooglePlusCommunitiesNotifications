@@ -258,12 +258,24 @@ console.log('getOneNotificationData');
 		var community = self.getCommunityDataById(community_id);
 		if (!community) return null;
 
+		var updated = json[30]; // posted and commented
+		if (json[70] && (json[70] > updated)) { // edited
+			updated = json[70];
+		}
+//		if (json[73][6] && ((json[73][6] * 1000) > updated)) { // +1'd
+//			updated = json[73][6] * 1000;
+//		}
+
 		var note = {
 			id        : json[8],
 			url       : self.HOME_URL + json[21],
-			text      : json[47] || json[4], // json[20],
-			posted    : json[5],
-			updated   : json[30] / 1000,
+			text      : json[47] || json[4],
+				// json[4]  : html : it's in reshared or itself
+				// json[20] : text : it's in reshared or itself
+				// json[47] : html : it's commented on resharing or undefined
+				// json[48] : text : it's commented on resharing or undefined
+			posted    : json[5], // posted, json[38]
+			updated   : updated / 1000,
 			actor     : {
 				id   : json[16],
 				name : json[3],
@@ -280,7 +292,7 @@ console.log('getOneNotificationData');
 			is_plused : json[73][13],
 			reshares  : json[96],
 			is_new    : ((json[5] * 1000) > community.last),
-			is_unread : (json[30] > community.last)
+			is_unread : (updated > community.last)
 		};
 
 		if (json[11].length) {
