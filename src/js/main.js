@@ -298,15 +298,20 @@ console.log('getOneNotificationData');
 		if (json[11].length) {
 			note.attachment = {};
 			var attachment = json[11][0];
+			var regex = /http:\/\/(?:.*\.)?youtube.com\/watch\?v=([a-zA-Z0-9_-]+)[-_.!~*'()a-zA-Z0-9;\/?:@&=+\$,%#]*/g;
 			if (attachment[24][4] === 'video') {
-				note.attachment.image =
-					attachment[24][1].replace(
-						/http:\/\/(?:.*\.)?youtube.com\/watch\?v=([a-zA-Z0-9_-]+)[-_.!~*'()a-zA-Z0-9;\/?:@&=+\$,%#]*/g,
-						'http://ytimg.googleusercontent.com/vi/$1/default.jpg'
-					);
+				if (attachment[24][1].match(regex)) {
+					note.attachment.image =
+						attachment[24][1].replace(regex, 'http://ytimg.googleusercontent.com/vi/$1/default.jpg');
+				}
+				else {
+					note.attachment.image = attachment[41] && attachment[41][0][1];
+				}
 				note.attachment.title = attachment[3];
 				note.attachment.link  = attachment[24][1];
-				note.attachment.desc  = attachment[21];
+				if (!attachment[47] || !attachment[47][0] || !(attachment[47][0][1] === 'picasa')) {
+					note.attachment.desc  = attachment[21];
+				}
 			}
 			else if ((attachment[24][4] === 'image') || (attachment[24][4] === 'photo')) {
 				note.attachment.image = attachment[5] && attachment[5][1];
