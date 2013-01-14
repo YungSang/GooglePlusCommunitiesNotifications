@@ -10,7 +10,7 @@ GooglePlusCommunitiesNotifications.prototype = {
 	HOME_URL    : 'https://plus.google.com/',
 	BASE_URL    : 'https://plus.google.com/u/0/',
 	INIT_URL    : '_/initialdata',
-	COMMUS_URL  : '_/communities/gethome',
+	COMMUS_URL  : '_/communities/getcommunities',
 	STREAM_URL  : '_/stream/getactivities/',
 	LANDING_URL : '_/communities/landing',
 	PLUSONE_URL : '_/plusone',
@@ -122,22 +122,23 @@ console.log('getCommunities');
 				}),
 			dataType : 'text',
 			data     : {
-				at : self.oz[15]
+				'f.req' : '[[1]]',
+				at      : self.oz[15]
 			},
 			success  : function(data) {
 				var text = data.substr(5).replace(/(\\n|\n)/g, '');
 				Sandbox.evalJSON(text, function(json) {
-					var data = self.getDataByKey(json[0], 'sq.gshr');
+					var data = self.getDataByKey(json[0], 'sq.gsr');
 					if (data) {
-						data[1][0].forEach(function(community) {
+						data[2].forEach(function(community) {
 							communities.push({
-								id     : community[0][0],
-								name   : community[0][1][0],
-								icon   : community[0][1][3],
-								desc   : community[0][1][8],
-								unread : community[4][1],
-								latest : community[4][2],
-								last   : community[4][3]
+								id     : community[0][0][0],
+								name   : community[0][0][1][0],
+								icon   : community[0][0][1][3],
+								desc   : community[0][0][1][8],
+								unread : community[0][4][1],
+								latest : community[0][4][2],
+								last   : community[0][4][3]
 							});
 						});
 						communities.sort(function(a, b) {
@@ -329,6 +330,10 @@ console.log('getOneNotificationData');
 
 		var community = self.getCommunityDataById(community_id);
 		if (!community) return null;
+
+		if (json[108][4] === 2) { // moderated
+			return null;
+		}
 
 		var updated = json[30]; // posted and commented
 		if (json[70] && (json[70] > updated)) { // edited
