@@ -43,6 +43,15 @@ body {
 .community_name {
   width: 500px;
 }
+.community_name h3 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4em;
+}
+.community_name div {
+  width: 500px;
+  word-wrap: break-word;
+}
 
 .community_hide {
   text-align: center !important;

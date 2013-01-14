@@ -44,8 +44,15 @@ console.log('loadCommunities');
     $td = $('<td/>', {
       class : 'community_name'
     }).appendTo($tr);
-    $a2.append(community.name).appendTo($td);
-    $('<div/>').append(truncateText(community.desc, 140)).appendTo($td);
+    $a2.append(community.name);
+    $('<h3/>').append($a2).appendTo($td);
+
+    var desc = '';
+    if (community.line) {
+      desc += '<b>' + community.line + '</b><br/>';
+    }
+    desc += truncateText(community.desc, 140);
+    $('<div/>').append(desc).appendTo($td);
 
     $td = $('<td/>', {
       class : 'community_hide'

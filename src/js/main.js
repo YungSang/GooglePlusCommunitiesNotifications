@@ -134,6 +134,7 @@ console.log('getCommunities');
 							communities.push({
 								id     : community[0][0][0],
 								name   : community[0][0][1][0],
+								line   : community[0][0][1][1],
 								icon   : community[0][0][1][3],
 								desc   : community[0][0][1][8],
 								unread : community[0][4][1],
