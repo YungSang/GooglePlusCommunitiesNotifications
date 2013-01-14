@@ -11,6 +11,7 @@ GooglePlusCommunitiesNotifications.prototype = {
 	BASE_URL    : 'https://plus.google.com/u/0/',
 	INIT_URL    : '_/initialdata',
 	COMMUS_URL  : '_/communities/gethome',
+	STREAM_URL  : '_/stream/getactivities/',
 	LANDING_URL : '_/communities/landing',
 	PLUSONE_URL : '_/plusone',
 
@@ -198,6 +199,48 @@ console.log('getNotifications');
 
 		$.ajax({
 			type     : 'POST',
+			url      : self.BASE_URL + self.STREAM_URL + '?' +
+				$.param({
+					hl     : 'en',
+					_reqid : self.getReqid(),
+					rt     : 'j'
+				}),
+			dataType : 'text',
+			data     : {
+				'f.req' : '[[1,2,"' + community_id + '",null,null,null' +
+					',null,"social.google.com",[],null,null,null,null,null,null,[],null,0,0],null]',
+				at      : self.oz[15]
+			},
+			success  : function(data) {
+				var text = data.substr(5).replace(/(\\n|\n)/g, '');
+				Sandbox.evalJSON(text, function(json) {
+					var data = self.getDataByKey(json[0], 'os.nu');
+					var notes = [];
+
+					if (data && data[1]) {
+						data[1][0].forEach(function(note) {
+							var parsed_note = self.getOneNotificationData(community_id, note);
+							if (parsed_note) notes.push(parsed_note);
+						});
+						notes.sort(function(a, b) {
+							return (b.updated - a.updated);
+						});
+					}
+					callback(notes);
+				});
+			}
+		});
+	},
+
+	_getNotifications : function(community_id, callback) {
+console.log('_getNotifications');
+		var self = this;
+
+		var community = self.getCommunityDataById(community_id);
+		if (!community) return callback([]);
+
+		$.ajax({
+			type     : 'POST',
 			url      : self.BASE_URL + self.LANDING_URL + '?' +
 				$.param({
 					hl     : 'en',
@@ -229,6 +272,35 @@ console.log('getNotifications');
 					}
 					callback(notes);
 				});
+			}
+		});
+	},
+
+	markAllAsRead : function(community_id, callback) {
+console.log('markAllAsRead');
+		var self = this;
+
+		var community = self.getCommunityDataById(community_id);
+		if (!community) return callback();
+
+		$.ajax({
+			type     : 'POST',
+			url      : self.BASE_URL + self.LANDING_URL + '?' +
+				$.param({
+					hl     : 'en',
+					_reqid : self.getReqid(),
+					rt     : 'j'
+				}),
+			dataType : 'text',
+			data     : {
+				'f.req' : '["' + community_id + '",null,false]',
+				at      : self.oz[15]
+			},
+			success  : function(data) {
+				community.unread = 0;
+				community.last = 1000 * new Date();
+				self.updateBadge();
+				callback();
 			}
 		});
 	},
