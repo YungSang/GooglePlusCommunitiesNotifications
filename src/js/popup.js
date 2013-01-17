@@ -30,6 +30,10 @@
 	$a.append(' Reload').appendTo($nav);
 });
 
+$('article header').live('click' ,function(event) {
+	$('article > ul').animate({scrollTop: 0}, 100);
+});
+
 $('article a').live('click' ,function(event) {
 	event.preventDefault();
 	event.stopPropagation();

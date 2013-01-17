@@ -369,6 +369,6 @@
   //
   $.fn.infiniteTabs.defaults = {
     initialTabSlideOffset: 10,
-    shiftNumOfTabs: 5
+    shiftNumOfTabs: 9
   };
 }(jQuery));
