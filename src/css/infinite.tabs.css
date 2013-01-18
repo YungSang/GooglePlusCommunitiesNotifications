@@ -155,10 +155,11 @@ ul.infinite-tabs {
       ul.infinite-tabs li.navigation div {
         overflow: hidden;
         position: relative;
-        left: -10px;
-        padding-top: 10px;
+        left: -7px;
+        padding-top: 15px;
         padding-left: 10px; }
       ul.infinite-tabs li.navigation a {
+        height: 19px;
         font-size: 130%;
         padding: 0 5px;
         font-family: "Arial Unicode MS",sans-serif;
