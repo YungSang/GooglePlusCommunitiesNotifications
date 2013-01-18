@@ -89,16 +89,17 @@ function setInfiniteTab() {
 				return;
 			}
 
+			var msg = chrome.i18n.getMessage('mark_all_as_read');
 			var $a = $('<a/>', {
 				href  : '#markallasread',
-				title : 'Mark all as read'
+				title : msg
 			}).click(function() {
 				bg.GPCN.markAllAsRead(community_id, function() {
 					$('.unread').removeClass('unread');
 					$('.new').removeClass('new');
 				});
 				return false;
-			}).append('Mark all as read').prependTo($('header', $article));
+			}).append(msg).prependTo($('header', $article));
 
 			var $ul = $('<ul/>').appendTo($article);
 

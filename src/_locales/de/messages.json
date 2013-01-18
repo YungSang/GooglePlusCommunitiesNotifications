@@ -24,6 +24,10 @@
     "message" : "Keine Meldungen",
     "description" : "An error message in the popup window"
   },
+  "mark_all_as_read" : {
+    "message" : "Alle als gelesen markieren",
+    "description" : "A button text to mark all as read"
+  },
 
 // in optinos.html
   "description_of_omitting" : {

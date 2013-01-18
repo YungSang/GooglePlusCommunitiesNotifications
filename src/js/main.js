@@ -129,7 +129,7 @@ console.log('getCommunities');
 				var text = data.substr(5).replace(/(\\n|\n)/g, '');
 				Sandbox.evalJSON(text, function(json) {
 					var data = self.getDataByKey(json[0], 'sq.gsr');
-					if (data) {
+					if (data && data[2]) {
 						data[2].forEach(function(community) {
 							communities.push({
 								id     : community[0][0][0],

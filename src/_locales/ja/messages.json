@@ -24,6 +24,10 @@
     "message" : "このコミュニティには通知がありません。",
     "description" : "An error message in the popup window"
   },
+  "mark_all_as_read" : {
+    "message" : "すべて既読にする",
+    "description" : "A button text to mark all as read"
+  },
 
 // in optinos.html
   "description_of_omitting" : {
