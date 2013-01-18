@@ -299,12 +299,13 @@ console.log('markAllAsRead');
 				at      : self.oz[15]
 			},
 			success  : function(data) {
-				community.unread = 0;
-				community.last = 1000 * new Date();
-				self.updateBadge();
-				callback();
 			}
 		});
+
+		community.unread = 0;
+		community.last = 1000 * new Date();
+		self.updateBadge();
+		callback();
 	},
 
 	getCommunityDataById : function(community_id) {
