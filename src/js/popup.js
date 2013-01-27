@@ -123,8 +123,13 @@ function setInfiniteTab() {
 			}
 			$community.click();
 		}
+		else {
+			$('#loading').hide();
+		}
 	}
-	$('#loading').hide();
+	else {
+		$('#loading').hide();
+	}
 
 	$tabs.infiniteTabs( 'adjust-to-fit' );
 }
