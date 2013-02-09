@@ -71,7 +71,7 @@ GooglePlusCommunitiesNotifications.prototype = {
 				}).appendTo($li);
 
 				$('<img/>', {
-					src : self.getAbsoluteURL(community.icon),
+					src : community.icon,
 					alt : community.name
 				}).appendTo($a);
 
@@ -135,7 +135,7 @@ console.log('getCommunities');
 								id     : community[0][0][0],
 								name   : community[0][0][1][0],
 								line   : community[0][0][1][1],
-								icon   : community[0][0][1][3],
+								icon   : self.getAbsoluteURL(community[0][0][1][3]) || chrome.extension.getURL('img/c-icon-250.png'),
 								desc   : community[0][0][1][8],
 								unread : community[0][4][1],
 								latest : community[0][4][2],
@@ -358,7 +358,7 @@ console.log('getOneNotificationData');
 			actor     : {
 				id   : json[16],
 				name : json[3],
-				icon : self.getAbsoluteURL(json[18]),
+				icon : self.getAbsoluteURL(json[18]) || chrome.extension.getURL('img/p-icon-48.png'),
 				url  : self.HOME_URL + ((json[24].substr(0, 2) === './') ? json[24].substring(2) : json[24])
 			},
 			stream    : {
@@ -436,7 +436,7 @@ console.log('getOneNotificationData');
 				actor  : {
 					id   : comment[6],
 					name : comment[1],
-					icon : self.getAbsoluteURL(comment[16]),
+					icon : self.getAbsoluteURL(comment[16]) || chrome.extension.getURL('img/p-icon-32.png'),
 					url  : self.HOME_URL + comment[10]
 				}
 			};
@@ -487,6 +487,7 @@ console.log('setPlusOne');
 	},
 
 	getAbsoluteURL : function(url) {
+		if (!url) return url;
 		if (url.substr(0, 4) === 'http') {
 			return url;
 		}

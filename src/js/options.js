@@ -35,7 +35,7 @@ console.log('loadCommunities');
     }).appendTo($tr);
     $a1.appendTo($td);
     $('<img/>', {
-      src : bg.GPCN.getAbsoluteURL(community.icon),
+      src : community.icon,
       alt : community.name
     }).appendTo($a1);
 
