@@ -37,13 +37,12 @@ $('article header').live('click' ,function(event) {
 $('article a').live('click' ,function(event) {
 	event.preventDefault();
 	event.stopPropagation();
-	window.open($(this).attr('href'), '');
+	openWindowInBackground($(this).attr('href'));
 	return false;
 });
 
 $('article li.notification').live('click' ,function(event) {
-	window.open($(this).attr('data-url'), '');
-	hidePopup();
+	openWindowInBackground($(this).attr('data-url'));
 });
 
 function setInfiniteTab() {
@@ -277,6 +276,13 @@ function truncateText(text, length) {
 }
 
 var bg = chrome.extension.getBackgroundPage();
+
+function openWindowInBackground(url) {
+	chrome.tabs.create({
+		url      : url,
+		selected : false
+	});
+}
 
 function hidePopup() {
 	window.close();
