@@ -273,7 +273,7 @@ article ul li .comment img {
 article ul li img.photo {
 	width: auto;
 	height: auto;
-	max-width: 128px;
+	max-width: 250px;
 }
 
 article ul li .clear {

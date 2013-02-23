@@ -235,7 +235,7 @@ function addNotificationToList(note, $ul) {
 			annotation += '<a href="' + note.attachment.link + '">' + note.attachment.title + '</a><br/>\n';
 		}
 		if (note.attachment.image) {
-			annotation += '<img class="photo" src="http://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=' + encodeURIComponent(note.attachment.image) + '&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&no_expand=1"/>\n';
+			annotation += '<img class="photo" src="http://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?url=' + encodeURIComponent(note.attachment.image) + '&container=focus&gadget=a&rewriteMime=image/*&refresh=31536000&resize_h=250&resize_w=250&no_expand=1"/>\n';
 		}
 		if (note.attachment.desc) {
 			var desc = truncateText(note.attachment.desc, 140);
