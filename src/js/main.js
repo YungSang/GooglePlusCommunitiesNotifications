@@ -393,7 +393,8 @@ console.log('getOneNotificationData');
 				}
 			}
 			else if ((attachment[24][4] === 'image') || (attachment[24][4] === 'photo')) {
-				note.attachment.image = attachment[5] && attachment[5][1];
+				note.attachment.image = attachment[5] && attachment[5][1] ?
+					attachment[5][1] : (attachment[41] && attachment[41][0][1]);
 				note.attachment.title = attachment[3];
 				note.attachment.link  = attachment[24][1];
 				if (!attachment[47] || !attachment[47][0] || !(attachment[47][0][1] === 'picasa')) {
@@ -403,7 +404,7 @@ console.log('getOneNotificationData');
 			else if ((attachment[24][4] === 'document') || (attachment[24][3] === 'text/html')) {
 				var attachment2 = json[11][1];
 				if (attachment2 && ((attachment2[24][4] === 'image') || (attachment2[24][4] === 'photo'))) {
-					note.attachment.image = attachment2[5] ?
+					note.attachment.image = attachment2[5] && attachment2[5][1] ?
 						attachment2[5][1] : (attachment2[41] && attachment2[41][0][1]);
 					note.attachment.title = attachment[3];
 					note.attachment.link  =	(attachment[24][1].substr(0, 4) === 'http' ?
