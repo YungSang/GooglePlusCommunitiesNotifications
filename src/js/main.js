@@ -428,6 +428,52 @@ console.log('getOneNotificationData');
 				}
 			}
 		}
+		else if (json[97] && json[97].length) {
+			function getAttachment(data) {
+				return {
+					title : data[10],
+					link  : data[5],
+					image : data[0][5][0]
+				};
+			}
+
+			var attachment = json[97][3] || json[97][2] || json[97][1];
+			for (var key in attachment) {
+				switch (key) {
+				case '27639957':
+					note.attachment = getAttachment(attachment[key]);
+					break;
+				case '27847199':
+					note.attachment = getAttachment(attachment[key][3][0]);
+					break;
+				case '42861421':
+				case '40154698':
+				case '39748951':
+					note.attachment = {
+						title : attachment[key][2],
+						link  : attachment[key][0],
+						image : attachment[key][1],
+						desc  : attachment[key][3]
+					};
+					break;
+				case '26807910':
+					note.attachment = {
+						title : attachment[key][0],
+						link  : attachment[key][2],
+						image : attachment[key][5],
+						desc  : attachment[key][1]
+					};
+					break;
+				case '28286009':
+					note.attachment = {
+						title : attachment[key][6],
+						link  : attachment[key][7],
+						image : attachment[key][14]
+					};
+					break;
+				}
+			}
+		}
 
 		if (json[7].length) {
 			var comment = json[7][json[7].length - 1];
