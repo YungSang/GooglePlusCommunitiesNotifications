@@ -471,6 +471,12 @@ console.log('getOneNotificationData');
 						image : attachment[key][14]
 					};
 					break;
+				case '27247137':
+					note.attachment = {
+						title : attachment[key][1],
+						link  : attachment[key][0],
+						image : attachment[key][4]
+					};
 				}
 			}
 		}
