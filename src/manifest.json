@@ -20,7 +20,7 @@
 			"js/main.js"
 		]
 	},
-	"minimum_chrome_version" : "21.0",
+	"minimum_opera_version" : "15.0",
 	"options_page"     : "options.html",
 	"permissions"      : [
 		"tabs",
@@ -28,7 +28,7 @@
 		"https://plus.google.com/*"
 	],
 	"incognito"        : "split",
-	"update_url"       : "http://yungsang.com/google+/communitiesnotifications/chrome/update.xml",
+	"update_url"       : "http://yungsang.com/google+/communitiesnotifications/opera/update.xml",
 	"web_accessible_resources" : [
 		"sandbox.html"
 	],
