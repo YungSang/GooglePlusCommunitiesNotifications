@@ -10,7 +10,7 @@ Get notifications of Google+ Communities
 * Posts with light pink background color are new.
 * Posts with light yellow background color have been updated since you opened the community last time. (It includes edited and commented activities, but +1'd and reshared.)
 * In the Options page, you can omit communities which you don't want notifications from.
-* Keep unread marks, unless you click "Mark all as read" or go to the community page.
+* <del>Keep unread marks, unless you click "Mark all as read" or go to the community page.</del> (v 0.17.0 ~)
 
 	![](https://lh4.googleusercontent.com/-xL5NrlCHbhY/UPNxLUpZDkI/AAAAAAAAGTE/ZlnjhgC7pm8/s637/screenshot.png)
 	![](https://lh3.googleusercontent.com/-qgcpqzG4KHQ/UN4_LnHJhyI/AAAAAAAAF7g/reDNK6uI-4c/s528/screenshot2.png)
