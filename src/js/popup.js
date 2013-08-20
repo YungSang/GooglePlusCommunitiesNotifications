@@ -88,6 +88,7 @@ function setInfiniteTab() {
 				return;
 			}
 
+/*
 			var msg = chrome.i18n.getMessage('mark_all_as_read');
 			var $a = $('<a/>', {
 				href  : '#markallasread',
@@ -99,6 +100,7 @@ function setInfiniteTab() {
 				});
 				return false;
 			}).append(msg).prependTo($('header', $article));
+*/
 
 			var $ul = $('<ul/>').appendTo($article);
 
@@ -285,6 +287,7 @@ function openWindowInBackground(url) {
 }
 
 function hidePopup() {
+//	bg.GPCN.init(function() {});
 	window.close();
 }
 
@@ -298,4 +301,8 @@ $(function() {
 	});
 
 	loadCommunities();
+});
+
+$(window).unload(function() {
+	bg.GPCN.init(function() {});
 });

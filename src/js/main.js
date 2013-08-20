@@ -209,8 +209,8 @@ console.log('getNotifications');
 				}),
 			dataType : 'text',
 			data     : {
-				'f.req' : '[[1,2,"' + community_id + '",null,null,null' +
-					',null,"social.google.com",[],null,null,null,null,null,null,[],null,0,0],null]',
+				'f.req' : '[[18,2,"' + community_id + '",null,null,20' +
+					',null,"social.google.com",[],null,null,null,null,null,null,[],null,null,0,null,null,0,null,15,null,[[1002],[],0,0],null,null,0,null,null,0]]',
 				at      : self.oz[15]
 			},
 			success  : function(data) {
@@ -218,9 +218,8 @@ console.log('getNotifications');
 				Sandbox.evalJSON(text, function(json) {
 					var data = self.getDataByKey(json[0], 'os.nu');
 					var notes = [];
-
 					if (data && data[1]) {
-						data[1][0].forEach(function(note) {
+						self.makeNotesArray(data).forEach(function(note) {
 							var parsed_note = self.getOneNotificationData(community_id, note);
 							if (parsed_note) notes.push(parsed_note);
 						});
@@ -232,6 +231,14 @@ console.log('getNotifications');
 				});
 			}
 		});
+	},
+
+	makeNotesArray : function(data) {
+		var notes = [];
+		data[1][7].forEach(function(note) {
+			if (note[0] === 1002) notes.push(note[1][33558957]);
+		});
+		return notes;
 	},
 
 	_getNotifications : function(community_id, callback) {
