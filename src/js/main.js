@@ -292,6 +292,7 @@ console.log('markAllAsRead');
 		var community = self.getCommunityDataById(community_id);
 		if (!community) return callback();
 
+/*
 		$.ajax({
 			type     : 'POST',
 			url      : self.BASE_URL + self.LANDING_URL + '?' +
@@ -308,6 +309,7 @@ console.log('markAllAsRead');
 			success  : function(data) {
 			}
 		});
+*/
 
 		community.unread = 0;
 		community.last = 1000 * new Date();

@@ -88,8 +88,7 @@ function setInfiniteTab() {
 				return;
 			}
 
-/*
-			var msg = chrome.i18n.getMessage('mark_all_as_read');
+			var msg = 'Clear Marks Now'; // chrome.i18n.getMessage('mark_all_as_read');
 			var $a = $('<a/>', {
 				href  : '#markallasread',
 				title : msg
@@ -100,7 +99,6 @@ function setInfiniteTab() {
 				});
 				return false;
 			}).append(msg).prependTo($('header', $article));
-*/
 
 			var $ul = $('<ul/>').appendTo($article);
 
