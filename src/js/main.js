@@ -446,7 +446,7 @@ console.log('getOneNotificationData');
 				};
 			}
 
-			var attachment = json[97][3] || json[97][2] || json[97][1];
+			var attachment = json[97][7] || json[97][4] ||  json[97][3] || json[97][2] || json[97][1];
 			for (var key in attachment) {
 				switch (key) {
 				case '27639957':
@@ -458,12 +458,28 @@ console.log('getOneNotificationData');
 				case '42861421':
 				case '40154698':
 				case '39748951':
+				case '40655821':
 					note.attachment = {
 						title : attachment[key][2],
 						link  : attachment[key][0],
 						image : attachment[key][1],
 						desc  : attachment[key][3]
 					};
+					break;
+				case '40842909':
+					var attachment2 = attachment[key][41][0][2];
+					for (var key2 in attachment2) {
+						switch (key2) {
+						case '40655821':
+							note.attachment = {
+								title : attachment[key][2],
+								link  : attachment2[key2][0],
+								image : attachment2[key2][1],
+								desc  : attachment2[key2][3]
+							};
+							break;
+						}
+					}
 					break;
 				case '26807910':
 					note.attachment = {
