@@ -459,6 +459,8 @@ console.log('getOneNotificationData');
 				case '40154698':
 				case '39748951':
 				case '40655821':
+				case '40656203':
+				case '31748373':
 					note.attachment = {
 						title : attachment[key][2],
 						link  : attachment[key][0],
