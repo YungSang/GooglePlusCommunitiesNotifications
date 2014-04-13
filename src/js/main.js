@@ -346,7 +346,10 @@ console.log('getOneNotificationData');
 			return null;
 		}
 
-		var updated = json[30]; // posted and commented
+		var updated = json[5] * 1000; // posted
+		if (json[7].length) { // last commented
+			updated = json[7][json[7].length - 1][3] * 1000;
+		}
 		if (json[70] && (json[70] > updated)) { // edited
 			updated = json[70];
 		}
