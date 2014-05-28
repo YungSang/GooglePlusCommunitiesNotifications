@@ -236,7 +236,13 @@ console.log('getNotifications');
 	makeNotesArray : function(data) {
 		var notes = [];
 		data[1][7].forEach(function(note) {
-			if (note[0] === 1002) notes.push(note[1][33558957]);
+			if (note[0] === 1002) {
+				var data = (note[1] && note[1][33558957]) ? note[1][33558957] :
+					(note[6] && note[6][33558957]) ? note[6][33558957] : null;
+				if (data) {
+					notes.push(data);
+				}
+			}
 		});
 		return notes;
 	},
