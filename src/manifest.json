@@ -1,6 +1,6 @@
 {
 	"name"             : "__MSG_my_name__",
-	"version"          : "0.17.5",
+	"version"          : "0.17.6",
 	"manifest_version" : 2,
 	"description"      : "__MSG_my_desc__",
 	"icons"            : {
@@ -29,6 +29,7 @@
 	],
 	"incognito"        : "split",
 	"update_url"       : "http://yungsang.com/google+/communitiesnotifications/opera/update.xml",
+	"homepage_url"     : "http://yungsang.com/google+/communitiesnotifications/",
 	"web_accessible_resources" : [
 		"sandbox.html"
 	],
