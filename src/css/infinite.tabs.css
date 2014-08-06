@@ -160,6 +160,7 @@ ul.infinite-tabs {
         padding-left: 10px; }
       ul.infinite-tabs li.navigation a {
         height: 19px;
+        width: 10px;
         font-size: 130%;
         padding: 0 5px;
         font-family: "Arial Unicode MS",sans-serif;
